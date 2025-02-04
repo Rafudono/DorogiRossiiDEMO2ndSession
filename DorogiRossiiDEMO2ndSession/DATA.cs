@@ -31,15 +31,15 @@ namespace DorogiRossiiDEMO2ndSession
             }
             return instance;
         }
-        public  List<Content> Contents { get; set; }
+        public List<Content> Contents { get; set; }
 
-        public  List<CrossContentEvent> CrossContentEvents { get; set; }
+        public List<CrossContentEvent> CrossContentEvents { get; set; }
 
-        public  List<CrossResponsiblePerson> CrossResponsiblePersons { get; set; }
+        public List<CrossResponsiblePerson> CrossResponsiblePersons { get; set; }
 
-        public  List<Department> Departments { get; set; }
+        public List<Department> Departments { get; set; }
 
-        public  List<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
 
         public List<Event> Events { get; set; }
 
@@ -59,22 +59,34 @@ namespace DorogiRossiiDEMO2ndSession
         //мне совершенно не лень сейчас расписывать сто методов из api
         public async Task<List<Department>> GetDepartments()
         {
-            var list= new List<Department>();
+            var list = new List<Department>();
             //var resp = await httpClient.GetAsync("NonCRUDData/GetDepartments");
-            try 
-           // if (resp.StatusCode == System.Net.HttpStatusCode.OK)
+            try
+            // if (resp.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Departments = await httpClient.GetFromJsonAsync<List<Department>>("NonCRUDData/GetDepartments", options);
 
                 //Departments = await resp.Content.ReadFromJsonAsync<List<Department>>();
             }
-            catch (Exception ex) {
-            
+            catch (Exception ex)
+            {
+
                 MessageBox.Show(ex.Message);
                 Departments = list;
             }
             return Departments;
         }
-
+        public async Task<List<Employee>> GetEmployees()
+        {
+            try
+            {
+                Employees = await httpClient.GetFromJsonAsync<List<Employee>>("Employees", options);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return Employees;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DorogiRossiiDEMO2ndSession.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace DorogiRossiiDEMO2ndSession
     /// </summary>
     public partial class CheckEmplInfo : Window
     {
-        public CheckEmplInfo()
+        public CheckEmplInfo(Employee empl)
         {
+            EmployeeOnPage= empl;
             InitializeComponent();
         }
+        public Employee EmployeeOnPage { get; set; }
     }
 }

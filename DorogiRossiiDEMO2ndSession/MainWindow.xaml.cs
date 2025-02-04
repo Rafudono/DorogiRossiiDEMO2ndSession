@@ -19,6 +19,7 @@ namespace DorogiRossiiDEMO2ndSession
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public List<Employee> Employees { get; set; }
         public List<Employee> CurrentDepartmentEmployees
         {
             get => currentDepartmentEmployees;
@@ -39,7 +40,7 @@ namespace DorogiRossiiDEMO2ndSession
 
         public List<Department> Departments { get; set; } = new List<Department>();    //заполнить методом гет из DATA
         private Dictionary<int, List<Button>> buttonsLevel = new Dictionary<int, List<Button>>();
-        private List<Employee> currentDepartmentEmployees;
+        private List<Employee> currentDepartmentEmployees = new List<Employee>();
         private Employee selectedEmpl;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -48,16 +49,19 @@ namespace DorogiRossiiDEMO2ndSession
         {
             InitializeComponent();
             DataContext = this;
+            
             Task.Run(async () =>
             {
-                await FillCollection();
+                await FillCollections();
                 await DrawDiagramm();
 
             });
         }
-        public async Task FillCollection()
+
+        public async Task FillCollections()
         {
             Departments = await DATA.GetInstance().GetDepartments();
+            Employees = await DATA.GetInstance().GetEmployees();
         }
         public async Task DrawDiagramm()
         {
@@ -167,7 +171,22 @@ namespace DorogiRossiiDEMO2ndSession
         {
             Button button = sender as Button;
             Department department = button.Tag as Department;
-            CurrentDepartmentEmployees = department.Employees.ToList();
+            
+            EmployeesFromDeps(department);
+            var n = CurrentDepartmentEmployees;
+            CurrentDepartmentEmployees = null;
+            CurrentDepartmentEmployees = new List<Employee>(n);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentDepartmentEmployees)));
+        }
+
+        private void EmployeesFromDeps(Department? department)
+        {
+            CurrentDepartmentEmployees.AddRange(Employees.Where(s => s.IdDepartment == department.Id).ToList());
+            if(department.InverseIdMainDepNavigation.Count!=0)
+            {
+                foreach (var d in department.InverseIdMainDepNavigation)
+                    EmployeesFromDeps(d);
+            }
         }
 
         public async Task SetButtonPositions()
@@ -247,7 +266,7 @@ namespace DorogiRossiiDEMO2ndSession
 
         private void CheckInfoSelectedEmpl(object sender, MouseButtonEventArgs e)
         {
-            CheckEmplInfo taskwind= new CheckEmplInfo();
+            CheckEmplInfo taskwind= new CheckEmplInfo(SelectedEmpl);
             taskwind.ShowDialog();
         }
     }

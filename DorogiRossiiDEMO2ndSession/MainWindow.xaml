@@ -33,7 +33,6 @@
             <Canvas x:Name="diagram" >
             </Canvas>
         </ScrollViewer>
-
         <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CurrentDepartmentEmployees}" SelectedItem="{Binding SelectedEmpl}" MouseDoubleClick="CheckInfoSelectedEmpl">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -56,5 +55,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Content="+" Width="40" Height="50" FontWeight="Bold" BorderThickness="0" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Window>
