@@ -5,13 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DorogiRossiiDEMO2ndSession"
         mc:Ignorable="d"
-        Title="CheckEmplInfo" Height="450" Width="800">
-    <Grid>
+        Title="CheckEmplInfo" Height="800" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="LightGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -19,6 +34,57 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
         
+        <Label Content="Фамилия"/>
+            <TextBox Text="{Binding EmployeeOnPage.LastName}" Grid.Column="1" />
+            <Label Content="Имя" Grid.Row="1"/>
+            <TextBox Text="{Binding EmployeeOnPage.FirstName}" Grid.Row="1" Grid.Column="1"/>
+            <Label Content="Отчество" Grid.Row="2"/>
+        <TextBox Text="{Binding EmployeeOnPage.Patronymic}" Grid.Row="5" Grid.Column="1"/>
+        </Grid>
+
+        <Label Content="Мобильный телефон" Grid.Row="1"/>
+        <TextBox Text="{Binding EmployeeOnPage.Phone}" Grid.Row="2"/>
+        <Label Content="День рождения" Grid.Row="3"/>
+        <DatePicker SelectedDate="{Binding EmployeeOnPage.Birthday}" Grid.Row="4"/>
+        <Label Content="Структурное подразделение " Grid.Row="5"/>
+        <Label Grid.Row="6"/>
+        <Label Content="Должность" Grid.Row="7"/>
+        <ComboBox Grid.Row="8"/>
+        <Label Content="Непосредственный руководитель" Grid.Row="9"/>
+        <ComboBox Grid.Row="10"/>
+        <Label Content="Помощник" Grid.Row="11"/>
+        <ComboBox Grid.Row="12"/>
+        <Label Content="Рабочий телефон" Grid.Row="13"/>
+        <TextBox Text="{Binding EmployeeOnPage.OfficePhone}" Grid.Row="14"/>
+        <Label Content="Электронная почта" Grid.Row="15"/>
+        <TextBox Text="{Binding EmployeeOnPage.Email }" Grid.Row="16"/>
+        <StackPanel Grid.Row="17" Orientation="Horizontal">
+            <Label Content="Кабинет" />
+            <TextBox/>
+        </StackPanel>
+        <Label Content="Прочая информация" Grid.Row="18"/>
+        <TextBox Text="{Binding EmployeeOnPage.Description}" Grid.Row="19"/>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton Content="Прошедшие"/>
+            <ToggleButton Content="Текущие" Grid.Column="1"/>
+            <ToggleButton Content="Будущие" Grid.Column="2"/>
+        </Grid>
     </Grid>
 </Window>

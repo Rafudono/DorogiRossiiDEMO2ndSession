@@ -169,6 +169,7 @@ namespace DorogiRossiiDEMO2ndSession
 
         private void GetEmployees(object sender, RoutedEventArgs e)
         {
+            CurrentDepartmentEmployees = new List<Employee>();
             Button button = sender as Button;
             Department department = button.Tag as Department;
             
@@ -267,6 +268,13 @@ namespace DorogiRossiiDEMO2ndSession
         private void CheckInfoSelectedEmpl(object sender, MouseButtonEventArgs e)
         {
             CheckEmplInfo taskwind= new CheckEmplInfo(SelectedEmpl);
+            taskwind.ShowDialog();
+        }
+
+        private void AddNewEmplToDep(object sender, RoutedEventArgs e)
+        {
+            SelectedEmpl = new Employee();
+            CheckEmplInfo taskwind = new CheckEmplInfo(SelectedEmpl);
             taskwind.ShowDialog();
         }
     }
