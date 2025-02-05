@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="edit.png" />
     <None Remove="Logo.png" />
   </ItemGroup>
 
@@ -21,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

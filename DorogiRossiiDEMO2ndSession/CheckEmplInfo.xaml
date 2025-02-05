@@ -31,8 +31,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid >
             <Grid.ColumnDefinitions>
@@ -44,47 +43,59 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-        
-        <Label Content="Фамилия"/>
+
+            <Label Content="Фамилия"/>
             <TextBox Text="{Binding EmployeeOnPage.LastName}" Grid.Column="1" />
             <Label Content="Имя" Grid.Row="1"/>
             <TextBox Text="{Binding EmployeeOnPage.FirstName}" Grid.Row="1" Grid.Column="1"/>
             <Label Content="Отчество" Grid.Row="2"/>
-        <TextBox Text="{Binding EmployeeOnPage.Patronymic}" Grid.Row="5" Grid.Column="1"/>
+            <TextBox Text="{Binding EmployeeOnPage.Patronymic}" Grid.Row="5" Grid.Column="1"/>
         </Grid>
 
         <Label Content="Мобильный телефон" Grid.Row="1"/>
         <TextBox Text="{Binding EmployeeOnPage.Phone}" Grid.Row="2"/>
-        <Label Content="День рождения" Grid.Row="3"/>
-        <DatePicker SelectedDate="{Binding EmployeeOnPage.Birthday}" Grid.Row="4"/>
-        <Label Content="Структурное подразделение " Grid.Row="5"/>
-        <Label Grid.Row="6"/>
-        <Label Content="Должность" Grid.Row="7"/>
-        <ComboBox Grid.Row="8"/>
-        <Label Content="Непосредственный руководитель" Grid.Row="9"/>
-        <ComboBox Grid.Row="10"/>
-        <Label Content="Помощник" Grid.Row="11"/>
-        <ComboBox Grid.Row="12"/>
-        <Label Content="Рабочий телефон" Grid.Row="13"/>
-        <TextBox Text="{Binding EmployeeOnPage.OfficePhone}" Grid.Row="14"/>
-        <Label Content="Электронная почта" Grid.Row="15"/>
-        <TextBox Text="{Binding EmployeeOnPage.Email }" Grid.Row="16"/>
-        <StackPanel Grid.Row="17" Orientation="Horizontal">
-            <Label Content="Кабинет" />
-            <TextBox/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3">
+            <Label Content="День рождения" />
+            <DatePicker SelectedDate="{Binding EmployeeOnPage.Birthday}" />
         </StackPanel>
-        <Label Content="Прочая информация" Grid.Row="18"/>
-        <TextBox Text="{Binding EmployeeOnPage.Description}" Grid.Row="19"/>
+        <Label Content="Структурное подразделение:" Grid.Row="4"/>
+        <Label Grid.Row="5" Content="{Binding EmployeeOnPage.IdDepartmentNavigation.Title}"/>
+        <Label Content="Должность:" Grid.Row="6"/>
+        <Label Grid.Row="7" Content="{Binding EmployeeOnPage.IdRoleNavigation.Title}" />
+        <Label Content="Непосредственный руководитель" Grid.Row="8"/>
+        <ComboBox Grid.Row="9" ItemsSource="{Binding EmployeesFromSameDep}" DisplayMemberPath="FIO"/>
+        <Label Content="Помощник" Grid.Row="10"/>
+        <ComboBox Grid.Row="11" ItemsSource="{Binding EmployeesFromSameDep}" DisplayMemberPath="FIO"/>
+        <Label Content="Рабочий телефон" Grid.Row="12"/>
+        <TextBox Text="{Binding EmployeeOnPage.OfficePhone}" Grid.Row="13"/>
+        <Label Content="Электронная почта" Grid.Row="14"/>
+        <TextBox Text="{Binding EmployeeOnPage.Email }" Grid.Row="15"/>
+        <StackPanel Grid.Row="16" Orientation="Horizontal">
+            <Label Content="Кабинет" />
+            <TextBox Text="{Binding EmployeeOnPage.IdOfficeNavigation.Number}"/>
+        </StackPanel>
+        <Label Content="Прочая информация" Grid.Row="17"/>
+        <TextBox Text="{Binding EmployeeOnPage.Description}" Grid.Row="18"/>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Grid.RowSpan="100">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ToggleButton Content="Прошедшие"/>
-            <ToggleButton Content="Текущие" Grid.Column="1"/>
+            <ToggleButton Content="Текущие" Grid.Column="1" />
             <ToggleButton Content="Будущие" Grid.Column="2"/>
+            <Button x:Name="edit" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="55" Height="60" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/edit.png"/>
+                </Button.Background>
+            </Button>
+
         </Grid>
     </Grid>
 </Window>

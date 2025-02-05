@@ -1,5 +1,6 @@
 ﻿using DorogiRossiiDEMO2ndSession.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -87,6 +88,18 @@ namespace DorogiRossiiDEMO2ndSession
                 MessageBox.Show(ex.Message);
             }
             return Employees;
+        }
+        public async Task<List<Event>> GetEvents()
+        {
+            try
+            {
+                Events = await httpClient.GetFromJsonAsync<List<Event>>("Events", options);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return Events;
         }
     }
 }
